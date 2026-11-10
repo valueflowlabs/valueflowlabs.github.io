@@ -195,6 +195,39 @@ a:hover { color: var(--brown); }
 .hero:hover .wave,
 .hero.is-flowing .wave { animation-play-state: running; }
 
+/* The lens: a soft-edged window that follows the pointer and shows a brighter
+   copy of the same waves, so only the lines near the cursor light up. The
+   copy drifts in step with the waves beneath it and pulses gently. */
+.lens {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 22rem;
+  height: 22rem;
+  overflow: hidden;
+  border-radius: 50%;
+  -webkit-mask-image: radial-gradient(closest-side, #000 25%, transparent);
+  mask-image: radial-gradient(closest-side, #000 25%, transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  will-change: transform, opacity;
+}
+.hero.is-lit .lens { opacity: 1; }
+.lens-inner {
+  position: absolute;
+  left: 0;
+  top: 0;
+  will-change: transform;
+}
+.hero.is-lit .lens-inner { animation: pulse 1.8s ease-in-out infinite alternate; }
+.lens .wave-a { background-image: url("assets/waves-a-lit.svg"); }
+.lens .wave-b { background-image: url("assets/waves-b-lit.svg"); }
+
+@keyframes pulse {
+  from { opacity: 0.45; }
+  to { opacity: 1; }
+}
+
 @keyframes drift {
   from { transform: translate3d(0, 0, 0); }
   to { transform: translate3d(-600px, 0, 0); }
@@ -202,6 +235,7 @@ a:hover { color: var(--brown); }
 
 @media (prefers-reduced-motion: reduce) {
   .wave { animation: none; }
+  .lens { display: none; }
 }
 
 .hero .wrap {
