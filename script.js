@@ -1,12 +1,11 @@
 /* Hero glow: a soft light that follows the cursor inside the blue panel.
-   Decorative only. Skipped on touch screens and when the visitor has asked
+   Decorative only. Ignores touch input and when the visitor has asked
    their system for reduced motion. The page works fully without this file. */
 (function () {
   var hero = document.querySelector(".hero");
   var spot = document.querySelector(".hero-spot");
   if (!hero || !spot || !window.matchMedia) return;
 
-  var finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
   var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
   var x = 0, y = 0, targetX = 0, targetY = 0, frame = 0, placed = false;
@@ -21,7 +20,7 @@
   }
 
   hero.addEventListener("pointermove", function (event) {
-    if (event.pointerType !== "mouse" || !finePointer.matches || reducedMotion.matches) return;
+    if (event.pointerType === "touch" || reducedMotion.matches) return;
     var box = hero.getBoundingClientRect();
     targetX = event.clientX - box.left;
     targetY = event.clientY - box.top;

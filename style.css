@@ -176,25 +176,25 @@ a:hover { color: var(--brown); }
   clip-path: polygon(0 0, 76% 0, 90% 50%, 76% 100%, 0 100%);
   pointer-events: none;
   opacity: 0;
-  transition: opacity 0.6s ease;
+  transition: opacity 0.35s ease;
 }
 .hero.is-lit .hero-glow { opacity: 1; }
 .hero-spot {
   position: absolute;
-  left: -19rem;
-  top: -19rem;
-  width: 38rem;
-  height: 38rem;
+  left: -17rem;
+  top: -17rem;
+  width: 34rem;
+  height: 34rem;
   border-radius: 50%;
   background: radial-gradient(
     closest-side,
-    rgba(226, 196, 138, 0.3),
-    rgba(120, 160, 210, 0.13) 55%,
+    rgba(236, 206, 146, 0.55),
+    rgba(130, 170, 220, 0.22) 55%,
     transparent
   );
   will-change: transform;
 }
-@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+@media (prefers-reduced-motion: reduce) {
   .hero-glow { display: none; }
 }
 
