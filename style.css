@@ -467,6 +467,52 @@ h2 {
   color: var(--ink-soft);
 }
 
+/* ---------- Closing call ---------- */
+
+.closing {
+  background: linear-gradient(160deg, var(--brown) 0%, var(--brown-deep) 100%);
+  color: #f1e7d2;
+  text-align: center;
+  padding: 4.5rem 0;
+  border-top: 4px double var(--brass);
+}
+.closing .kicker { color: var(--brass); }
+.closing h2 {
+  color: #fff;
+  margin-bottom: 1.25rem;
+}
+.closing p {
+  max-width: 38rem;
+  margin: 0 auto;
+  text-wrap: pretty;
+}
+.closing .actions {
+  max-width: none;
+  margin-top: 2.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.button {
+  display: inline-block;
+  padding: 0.8rem 1.75rem;
+  background: var(--brass);
+  border: 1px solid var(--brass);
+  color: var(--brown-deep);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.button:hover { background: #fff; border-color: #fff; color: var(--brown-deep); }
+.button-quiet { background: transparent; color: var(--brass); }
+.button-quiet:hover { background: var(--brass); border-color: var(--brass); color: var(--brown-deep); }
+.button:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+
 /* ---------- Footer ---------- */
 
 .colophon {
@@ -528,6 +574,9 @@ h2 {
   .section { padding: 3.25rem 0; }
   h2 { font-size: 1.875rem; }
   .page-title { font-size: 2rem; }
+  .closing { padding: 3.25rem 0; }
+  .closing .actions { flex-direction: column; align-items: center; }
+  .button { width: 100%; max-width: 20rem; }
 
   .principles { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
   .lead { font-size: 1.25rem; margin-bottom: 2rem; }
@@ -551,7 +600,8 @@ h2 {
 }
 
 @media print {
-  .hero, .hero::before, .colophon { background: none; color: var(--ink); }
+  .hero, .hero::before, .colophon, .closing { background: none; color: var(--ink); }
+  .closing h2 { color: var(--ink); }
   .waves { display: none; }
   .hero p { color: var(--ink); }
   .nav { display: none; }
