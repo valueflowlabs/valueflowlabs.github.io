@@ -183,13 +183,13 @@ a:hover { color: var(--brown); }
   width: calc(100% + 600px);
   background-repeat: repeat-x;
   background-size: 600px 100%;
-  animation: drift 48s linear infinite paused;
+  animation: drift 96s linear infinite paused;
   will-change: transform;
 }
 .wave-a { background-image: url("assets/waves-a.svg"); }
 .wave-b {
   background-image: url("assets/waves-b.svg");
-  animation-duration: 64s;
+  animation-duration: 128s;
   animation-direction: reverse;
 }
 .hero:hover .wave,
