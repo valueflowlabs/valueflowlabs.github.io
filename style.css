@@ -150,9 +150,7 @@ a:hover { color: var(--brown); }
 .hero {
   position: relative;
   color: #fff;
-  background:
-    url("assets/guilloche.svg") center / 600px 100% repeat-x,
-    linear-gradient(160deg, var(--brown) 0%, var(--brown-deep) 100%);
+  background: linear-gradient(160deg, var(--brown) 0%, var(--brown-deep) 100%);
   border-top: 4px double var(--brass);
   border-bottom: 4px double var(--brass);
   overflow: hidden;
@@ -163,39 +161,47 @@ a:hover { color: var(--brown); }
   content: "";
   position: absolute;
   inset: 0;
-  background:
-    url("assets/guilloche.svg") center / 600px 100% repeat-x,
-    linear-gradient(180deg, var(--blue) 0%, var(--blue-deep) 100%);
+  background: linear-gradient(180deg, var(--blue) 0%, var(--blue-deep) 100%);
   clip-path: polygon(0 0, 76% 0, 90% 50%, 76% 100%, 0 100%);
 }
 
-/* Cursor glow, clipped to the blue panel. Moved with transform only. */
-.hero-glow {
+/* The waves are two interleaved sets of lines that drift slowly in opposite
+   directions, so the lines weave through each other. Each tile is exactly one
+   wave period wide (600px), which makes the loop seamless. They move only
+   while the pointer is over the hero, and for a few seconds on arrival. */
+.waves {
   position: absolute;
   inset: 0;
-  clip-path: polygon(0 0, 76% 0, 90% 50%, 76% 100%, 0 100%);
+  overflow: hidden;
   pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.35s ease;
 }
-.hero.is-lit .hero-glow { opacity: 1; }
-.hero-spot {
+.wave {
   position: absolute;
-  left: -17rem;
-  top: -17rem;
-  width: 34rem;
-  height: 34rem;
-  border-radius: 50%;
-  background: radial-gradient(
-    closest-side,
-    rgba(236, 206, 146, 0.55),
-    rgba(130, 170, 220, 0.22) 55%,
-    transparent
-  );
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: calc(100% + 600px);
+  background-repeat: repeat-x;
+  background-size: 600px 100%;
+  animation: drift 48s linear infinite paused;
   will-change: transform;
 }
+.wave-a { background-image: url("assets/waves-a.svg"); }
+.wave-b {
+  background-image: url("assets/waves-b.svg");
+  animation-duration: 64s;
+  animation-direction: reverse;
+}
+.hero:hover .wave,
+.hero.is-flowing .wave { animation-play-state: running; }
+
+@keyframes drift {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-600px, 0, 0); }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .hero-glow { display: none; }
+  .wave { animation: none; }
 }
 
 .hero .wrap {
@@ -436,7 +442,7 @@ h2 {
 
 @media print {
   .hero, .hero::before, .colophon { background: none; color: var(--ink); }
-  .hero-glow { display: none; }
+  .waves { display: none; }
   .hero p { color: var(--ink); }
   .nav { display: none; }
 }
