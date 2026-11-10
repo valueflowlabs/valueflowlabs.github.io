@@ -202,8 +202,8 @@ a:hover { color: var(--brown); }
   position: absolute;
   left: 0;
   top: 0;
-  width: 22rem;
-  height: 22rem;
+  width: 12rem;
+  height: 12rem;
   overflow: hidden;
   border-radius: 50%;
   -webkit-mask-image: radial-gradient(closest-side, #000 25%, transparent);
@@ -224,7 +224,7 @@ a:hover { color: var(--brown); }
 .lens .wave-b { background-image: url("assets/waves-b-lit.svg"); }
 
 @keyframes pulse {
-  from { opacity: 0.45; }
+  from { opacity: 0.6; }
   to { opacity: 1; }
 }
 
