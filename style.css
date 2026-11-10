@@ -169,6 +169,35 @@ a:hover { color: var(--brown); }
   clip-path: polygon(0 0, 76% 0, 90% 50%, 76% 100%, 0 100%);
 }
 
+/* Cursor glow, clipped to the blue panel. Moved with transform only. */
+.hero-glow {
+  position: absolute;
+  inset: 0;
+  clip-path: polygon(0 0, 76% 0, 90% 50%, 76% 100%, 0 100%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+.hero.is-lit .hero-glow { opacity: 1; }
+.hero-spot {
+  position: absolute;
+  left: -19rem;
+  top: -19rem;
+  width: 38rem;
+  height: 38rem;
+  border-radius: 50%;
+  background: radial-gradient(
+    closest-side,
+    rgba(226, 196, 138, 0.3),
+    rgba(120, 160, 210, 0.13) 55%,
+    transparent
+  );
+  will-change: transform;
+}
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .hero-glow { display: none; }
+}
+
 .hero .wrap {
   position: relative;
   display: grid;
@@ -407,6 +436,7 @@ h2 {
 
 @media print {
   .hero, .hero::before, .colophon { background: none; color: var(--ink); }
+  .hero-glow { display: none; }
   .hero p { color: var(--ink); }
   .nav { display: none; }
 }
