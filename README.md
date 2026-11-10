@@ -2,4 +2,4 @@
 
 Plain HTML and CSS, no build step. Published with GitHub Pages at https://valueflowlabs.github.io/
 
-To preview, open `index.html` in a browser. Fonts: EB Garamond and Inter (SIL Open Font License, see `assets/fonts/OFL.txt` and `assets/fonts/OFL-Inter.txt`).
+To preview, open `index.html` in a browser. Fonts: EB Garamond (SIL Open Font License, see `assets/fonts/OFL.txt`).
