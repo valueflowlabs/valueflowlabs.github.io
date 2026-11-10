@@ -1,0 +1,357 @@
+/* Value Flow Labs — plain CSS, no build step. */
+
+@font-face {
+  font-family: "EB Garamond";
+  src: url("assets/fonts/eb-garamond-latin-ext-wght-normal.woff2") format("woff2");
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "EB Garamond";
+  src: url("assets/fonts/eb-garamond-latin-wght-normal.woff2") format("woff2");
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "EB Garamond";
+  src: url("assets/fonts/eb-garamond-latin-ext-wght-italic.woff2") format("woff2");
+  font-weight: 400 800;
+  font-style: italic;
+  font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "EB Garamond";
+  src: url("assets/fonts/eb-garamond-latin-wght-italic.woff2") format("woff2");
+  font-weight: 400 800;
+  font-style: italic;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  --blue: #1d3a5c;
+  --blue-deep: #142a44;
+  --brown: #6a4a30;
+  --brown-deep: #4a3221;
+  --brass: #c9a86a;
+  --paper: #f5eddc;
+  --paper-shade: #ebe0c9;
+  --ink: #2b2219;
+  --ink-soft: #5d4f40;
+  --rule: #b9a583;
+  --serif: "EB Garamond", "Iowan Old Style", "Palatino Linotype", Palatino,
+    "Book Antiqua", Georgia, serif;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 1.1875rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--blue); text-underline-offset: 0.18em; }
+a:hover { color: var(--brown); }
+
+.wrap {
+  max-width: 68rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.skip {
+  position: absolute;
+  left: -999rem;
+}
+.skip:focus {
+  left: 1rem;
+  top: 1rem;
+  background: var(--paper);
+  padding: 0.5rem 1rem;
+  z-index: 10;
+}
+
+/* ---------- Masthead ---------- */
+
+.masthead {
+  text-align: center;
+  padding: 1.5rem 1.5rem 1.25rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.plate {
+  display: inline-block;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  padding: 0.3rem;
+}
+.plate:hover { color: #fff; background: var(--blue-deep); }
+.plate span {
+  display: block;
+  border: 1px solid var(--brass);
+  padding: 0.5rem 1.6rem 0.55rem;
+  font-size: 2rem;
+  line-height: 1.1;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+.plate b { font-weight: 700; }
+
+.masthead .est {
+  margin: 0.55rem 0 0;
+  font-size: 0.875rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--brown);
+}
+
+.nav {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.25rem 2.25rem;
+}
+.nav a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.9375rem;
+  padding: 0.25rem 0;
+  border-bottom: 1px solid transparent;
+}
+.nav a:hover { color: var(--brown-deep); border-bottom-color: var(--brown); }
+
+/* ---------- Hero ---------- */
+
+.hero {
+  position: relative;
+  color: #fff;
+  background:
+    url("assets/guilloche.svg") center / 600px 100% repeat-x,
+    linear-gradient(160deg, var(--brown) 0%, var(--brown-deep) 100%);
+  border-top: 4px double var(--brass);
+  border-bottom: 4px double var(--brass);
+  overflow: hidden;
+}
+
+/* The blue panel points to the right: the direction of flow. */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    url("assets/guilloche.svg") center / 600px 100% repeat-x,
+    linear-gradient(180deg, var(--blue) 0%, var(--blue-deep) 100%);
+  clip-path: polygon(0 0, 76% 0, 90% 50%, 76% 100%, 0 100%);
+}
+
+.hero .wrap {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 3rem;
+  min-height: 31rem;
+  padding-top: 3.5rem;
+  padding-bottom: 3.5rem;
+}
+
+.hero-text { text-align: center; }
+
+.hero h1 {
+  margin: 0 0 1.5rem;
+  font-size: clamp(2.25rem, 4.2vw, 3rem);
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: 1.1;
+  text-wrap: balance;
+}
+
+.hero p {
+  margin: 0 auto 1rem;
+  max-width: 30rem;
+  color: #ece3cf;
+  text-wrap: balance;
+}
+.hero p:last-child { margin-bottom: 0; }
+
+.seal {
+  width: min(100%, 17rem);
+  height: auto;
+  justify-self: start;
+  color: var(--brass);
+}
+
+/* ---------- Sections ---------- */
+
+section { scroll-margin-top: 1rem; }
+
+.section {
+  padding: 4.5rem 0;
+}
+.section + .section { border-top: 1px solid var(--rule); }
+.section.shade { background: var(--paper-shade); }
+
+.kicker {
+  margin: 0 0 0.5rem;
+  text-align: center;
+  font-size: 0.875rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--brown);
+}
+
+h2 {
+  margin: 0 0 0.75rem;
+  text-align: center;
+  font-size: 2.25rem;
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--blue);
+  text-wrap: balance;
+}
+
+.ornament {
+  display: block;
+  width: 9rem;
+  height: auto;
+  margin: 0 auto 2.75rem;
+  color: var(--brown);
+}
+
+.principles {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2.5rem;
+}
+.principles li {
+  text-align: center;
+  padding: 0 0.5rem;
+}
+.principles .numeral {
+  display: block;
+  font-size: 1.5rem;
+  color: var(--brown);
+  letter-spacing: 0.1em;
+}
+.principles h3 {
+  margin: 0.25rem 0 0.5rem;
+  font-size: 1.375rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+.principles p { margin: 0; color: var(--ink-soft); }
+
+.ledger {
+  max-width: 44rem;
+  margin: 0 auto;
+  border-top: 3px double var(--brown);
+  border-bottom: 3px double var(--brown);
+}
+.ledger div {
+  display: grid;
+  grid-template-columns: 11rem minmax(0, 1fr);
+  gap: 1.5rem;
+  padding: 1.25rem 0.25rem;
+}
+.ledger div + div { border-top: 1px solid var(--rule); }
+.ledger dt {
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+.ledger dd { margin: 0; color: var(--ink-soft); }
+
+.contact p {
+  max-width: 34rem;
+  margin: 0 auto;
+  text-align: center;
+  color: var(--ink-soft);
+}
+
+/* ---------- Footer ---------- */
+
+.colophon {
+  background: var(--blue-deep);
+  color: #d8ccb4;
+  text-align: center;
+  font-size: 1rem;
+  padding: 2.25rem 1.5rem;
+  border-top: 4px double var(--brass);
+}
+.colophon p { margin: 0 auto; max-width: 44rem; }
+.colophon p + p { margin-top: 0.5rem; }
+.colophon .name {
+  color: #fff;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+.colophon a { color: var(--brass); }
+
+/* ---------- Small screens ---------- */
+
+@media (max-width: 760px) {
+  body { font-size: 1.125rem; }
+
+  .plate span { font-size: 1.5rem; padding: 0.45rem 1.1rem 0.5rem; }
+  .nav { gap: 0.25rem 1.5rem; }
+
+  .hero::before {
+    clip-path: polygon(0 0, 100% 0, 100% 86%, 50% 100%, 0 86%);
+  }
+  .hero .wrap {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem;
+    min-height: 0;
+    padding-top: 2.75rem;
+    padding-bottom: 5.5rem;
+  }
+  .seal { justify-self: center; width: 11rem; }
+
+  .section { padding: 3.25rem 0; }
+  h2 { font-size: 1.875rem; }
+
+  .principles { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
+  .ledger div { grid-template-columns: minmax(0, 1fr); gap: 0.25rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+@media print {
+  .hero, .hero::before, .colophon { background: none; color: var(--ink); }
+  .hero p { color: var(--ink); }
+  .nav { display: none; }
+}
